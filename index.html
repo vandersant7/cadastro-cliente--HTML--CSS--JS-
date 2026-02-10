@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Clientes</title>
+    <link rel="stylesheet" href="src/styles/base.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="app">
+        <!-- Cabeçalho -->
+        <header class="header">
+            <div class="header__container">
+                <h1 class="header__title">
+                    <i class="fas fa-users header__icon"></i>
+                    Sistema de Clientes
+                </h1>
+                <p class="header__subtitle">Gerencie seus clientes de forma simples e eficiente</p>
+            </div>
+        </header>
+
+        <!-- Conteúdo Principal -->
+        <main class="main">
+            <!-- Tela Inicial -->
+            <section class="home-screen" id="homeScreen">
+                <div class="home-screen__container">
+                    <div class="home-screen__card">
+                        <div class="home-screen__icon-container">
+                            <i class="fas fa-user-plus home-screen__icon"></i>
+                        </div>
+                        <h2 class="home-screen__title">Cadastrar Cliente</h2>
+                        <p class="home-screen__description">Adicione novos clientes ao sistema com informações completas.</p>
+                        <button class="button button--primary home-screen__button" id="cadastrarBtn">
+                            <i class="fas fa-plus button__icon"></i>
+                            Cadastrar Cliente
+                        </button>
+                    </div>
+                    
+                    <div class="home-screen__card">
+                        <div class="home-screen__icon-container">
+                            <i class="fas fa-search home-screen__icon"></i>
+                        </div>
+                        <h2 class="home-screen__title">Buscar Cliente</h2>
+                        <p class="home-screen__description">Localize clientes cadastrados por nome, CPF ou telefone.</p>
+                        <button class="button button--secondary home-screen__button" id="buscarBtn">
+                            <i class="fas fa-search button__icon"></i>
+                            Buscar Cliente
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Seção de Cadastro -->
+            <section class="cadastro-screen" id="cadastroScreen" style="display: none;">
+                <div class="cadastro-screen__container">
+                    <div class="cadastro-screen__header">
+                        <button class="cadastro-screen__back-button" id="voltarCadastroBtn">
+                            <i class="fas fa-arrow-left"></i>
+                            Voltar
+                        </button>
+                        <h2 class="cadastro-screen__title">
+                            <i class="fas fa-user-plus cadastro-screen__icon"></i>
+                            Cadastro de Cliente
+                        </h2>
+                    </div>
+                    
+                    <form class="form" id="cadastroForm">
+                        <div class="form__group">
+                            <label for="nome" class="form__label">
+                                <i class="fas fa-user form__icon"></i>
+                                Nome <span class="form__required">*</span>
+                            </label>
+                            <input type="text" id="nome" class="form__input" required>
+                            <div class="form__error" id="nomeError"></div>
+                        </div>
+                        
+                        <div class="form__group">
+                            <label for="endereco" class="form__label">
+                                <i class="fas fa-map-marker-alt form__icon"></i>
+                                Endereço <span class="form__required">*</span>
+                            </label>
+                            <textarea id="endereco" class="form__textarea" rows="3" required></textarea>
+                            <div class="form__error" id="enderecoError"></div>
+                        </div>
+                        
+                        <div class="form__group">
+                            <label for="telefone" class="form__label">
+                                <i class="fas fa-phone form__icon"></i>
+                                Telefone <span class="form__required">*</span>
+                            </label>
+                            <input type="tel" id="telefone" class="form__input" required>
+                            <div class="form__error" id="telefoneError"></div>
+                        </div>
+                        
+                        <div class="form__group">
+                            <label for="cpf" class="form__label">
+                                <i class="fas fa-id-card form__icon"></i>
+                                CPF (Opcional)
+                            </label>
+                            <input type="text" id="cpf" class="form__input">
+                            <div class="form__hint">Formato: 000.000.000-00</div>
+                        </div>
+                        
+                        <div class="form__group">
+                            <div class="form__info">
+                                <i class="fas fa-calendar-alt form__icon"></i>
+                                Data de criação: <span id="dataCriacao">--/--/----</span>
+                            </div>
+                        </div>
+                        
+                        <div class="form__actions">
+                            <button type="reset" class="button button--secondary form__button">
+                                <i class="fas fa-redo button__icon"></i>
+                                Limpar
+                            </button>
+                            <button type="submit" class="button button--primary form__button">
+                                <i class="fas fa-check button__icon"></i>
+                                Cadastrar Cliente
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <!-- Seção de Busca -->
+            <section class="busca-screen" id="buscaScreen" style="display: none;">
+                <div class="busca-screen__container">
+                    <div class="busca-screen__header">
+                        <button class="busca-screen__back-button" id="voltarBuscaBtn">
+                            <i class="fas fa-arrow-left"></i>
+                            Voltar
+                        </button>
+                        <h2 class="busca-screen__title">
+                            <i class="fas fa-search busca-screen__icon"></i>
+                            Buscar Cliente
+                        </h2>
+                    </div>
+                    
+                    <div class="busca-screen__search-container">
+                        <div class="search-bar">
+                            <div class="search-bar__container">
+                                <i class="fas fa-search search-bar__icon"></i>
+                                <input type="text" 
+                                       class="search-bar__input" 
+                                       id="buscaInput" 
+                                       placeholder="Buscar por nome, CPF ou telefone...">
+                                <button class="search-bar__clear" id="limparBuscaBtn" style="display: none;">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                            <button class="button button--primary search-bar__button" id="buscarClienteBtn">
+                                <i class="fas fa-search button__icon"></i>
+                                Buscar
+                            </button>
+                        </div>
+                        
+                        <div class="search-filters">
+                            <div class="search-filters__title">Filtrar por:</div>
+                            <div class="search-filters__options">
+                                <label class="search-filters__option">
+                                    <input type="radio" name="filtro" value="todos" checked>
+                                    <span class="search-filters__label">Todos</span>
+                                </label>
+                                <label class="search-filters__option">
+                                    <input type="radio" name="filtro" value="nome">
+                                    <span class="search-filters__label">Nome</span>
+                                </label>
+                                <label class="search-filters__option">
+                                    <input type="radio" name="filtro" value="cpf">
+                                    <span class="search-filters__label">CPF</span>
+                                </label>
+                                <label class="search-filters__option">
+                                    <input type="radio" name="filtro" value="telefone">
+                                    <span class="search-filters__label">Telefone</span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Resultados da Busca -->
+                    <div class="busca-screen__results" id="resultadosBusca">
+                        <div class="results-placeholder">
+                            <i class="fas fa-search results-placeholder__icon"></i>
+                            <p class="results-placeholder__text">
+                                Digite um termo de busca para encontrar clientes cadastrados.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Modal de Sucesso -->
+        <div class="modal" id="successModal">
+            <div class="modal__overlay"></div>
+            <div class="modal__container">
+                <div class="modal__header">
+                    <div class="modal__icon-container modal__icon-container--success">
+                        <i class="fas fa-check modal__icon"></i>
+                    </div>
+                    <h3 class="modal__title">Sucesso!</h3>
+                    <button class="modal__close" id="fecharModalBtn">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal__body">
+                    <p class="modal__message">Cliente cadastrado com sucesso!</p>
+                    <div class="modal__details">
+                        <p>Os dados do cliente foram armazenados no sistema.</p>
+                    </div>
+                </div>
+                <div class="modal__footer">
+                    <button class="button button--primary modal__button" id="okModalBtn">
+                        <i class="fas fa-check button__icon"></i>
+                        OK
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Rodapé -->
+        <footer class="footer">
+            <div class="footer__container">
+                <p class="footer__text">Sistema de Clientes &copy; <span id="currentYear">2024</span></p>
+                <p class="footer__info">
+                    <i class="fas fa-database footer__icon"></i>
+                    <span id="clientesCount">0</span> clientes cadastrados
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script src="src/js/index.js"></script>
+</body>
+</html>
