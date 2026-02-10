@@ -1,0 +1,89 @@
+/* ===========================================
+   ESTILOS ADICIONAIS ESPECÍFICOS
+   =========================================== */
+
+/* Layout dos cards na home */
+.home-view__cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--spacing-lg);
+  margin-top: var(--spacing-lg);
+}
+
+/* Conteúdo dos cards */
+.card__content {
+  padding: var(--spacing-md) 0;
+}
+
+.card__description {
+  color: var(--color-text-light);
+  margin-bottom: var(--spacing-lg);
+  line-height: 1.6;
+}
+
+/* Filtros de busca */
+.search-filters {
+  background: var(--color-bg-gray);
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-xs);
+  margin-bottom: var(--spacing-lg);
+}
+
+.search-filters__title {
+  font-weight: 500;
+  margin-bottom: var(--spacing-sm);
+  color: var(--color-text-light);
+  font-size: var(--font-size-sm);
+}
+
+.search-filters__options {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-md);
+}
+
+.search-filters__option {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-xs);
+  cursor: pointer;
+}
+
+.search-filters__option input[type="radio"] {
+  accent-color: var(--color-primary);
+}
+
+.search-filters__label {
+  color: var(--color-text);
+  font-size: var(--font-size-sm);
+}
+
+/* Informação do formulário */
+.form__info {
+  background: var(--color-bg-gray);
+  padding: var(--spacing-sm);
+  border-radius: var(--border-radius-xs);
+  color: var(--color-text-light);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  font-size: var(--font-size-sm);
+}
+
+/* Ícones */
+.icon {
+  font-size: 1.2em;
+  vertical-align: middle;
+}
+
+/* Responsividade adicional */
+@media (max-width: 768px) {
+  .home-view__cards {
+    grid-template-columns: 1fr;
+  }
+  
+  .search-filters__options {
+    flex-direction: column;
+    gap: var(--spacing-sm);
+  }
+}
